@@ -1,4 +1,5 @@
 expenses = []
+
 def add_expense():
 # Travail de l'etudiant A
     description = input("Description : ")
@@ -20,28 +21,6 @@ def show_total():
     total = sum(item["amount"] for item in expenses)
     print(f"Total : {total:.2f}")
 
-def main():
-   while True:
-     print("\n===== SUIVI DES DEPENSES =====")
-     print("1. Ajouter une depense")
-     print("2. Afficher les depenses")
-     print("3. Afficher le total")
-     print("4. Quitter")
-     choice = input("Votre choix : ")
-     if choice == "1":
-       add_expense()
-     elif choice == "2":
-        show_expenses()
-     elif choice == "3":
-       show_total()
-     elif choice == "4":
-       print("Au revoir !")
-       break
-     else:
-      print("Choix invalide.")
-if __name__ == "__main__":
-    main()
-
 def delete_expense():
     if not expenses:
        print("No expenses to delete.")
@@ -54,6 +33,7 @@ def delete_expense():
     if not choice.isdigit():
        print("Invalid expense number.")
        return
+    
     index = int(choice) - 1
     if 0 <= index < len(expenses):
        removed = expenses.pop(index)
@@ -61,3 +41,29 @@ def delete_expense():
        print(f"Deleted: {removed['description']}")
     else:
        print("Invalid expense number.")
+
+def main():
+   while True:
+     print("\n===== SUIVI DES DEPENSES =====")
+     print("1. Ajouter une depense")
+     print("2. Afficher les depenses")
+     print("3. Afficher le total")
+     print("4. Quitter")
+     print("5. Delete an expense")
+     choice = input("Votre choix : ")
+     if choice == "1":
+       add_expense()
+     elif choice == "2":
+        show_expenses()
+     elif choice == "3":
+       show_total()
+     elif choice == "4":
+       print("Au revoir !")
+       break
+     elif choice == "5":
+       delete_expense()
+     else:
+      print("Choix invalide.")
+if __name__ == "__main__":
+    main()
+
